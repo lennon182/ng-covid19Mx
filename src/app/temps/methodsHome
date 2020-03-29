@@ -1,0 +1,43 @@
+
+    // ====== [MAPA] ======
+    // await this.getdata.getMapaMx().then( (mapa: Array<any>) => {
+    //   this.mexMap = mapa;
+    // }).catch( e => console.log('Error get mapa', e));
+
+    // ====== [INFECTADOS] ======
+    // await this.getdata.getInfectadosLocal().then( (data: Array<any>) => {
+    //   this.infectados = data;
+    //   this.mexMap.forEach( estado => {
+    //     this.infectados.forEach(infectados => {
+    //       if ( estado.name === infectados.estado) {
+    //         estado.fill = '#f13d26';
+    //       }
+    //     });
+    //   });
+    // }).catch( e => console.log('Error get Infectados', e));
+
+    // ====== [SOSPECHOSOS] ======
+    // await this.getdata.getSospechososLocal().then( (data: Array<any>) => {
+    //   this.sospechosos = data;
+    //   this.mexMap.forEach( estado => {
+    //     this.sospechosos.forEach(sospechosos => {
+    //       if ( estado.name === sospechosos.estado) {
+    //         estado.fill = '#fca924';
+    //       }
+    //     });
+    //   });
+    // }).catch( e => console.log( 'Error get Sospechosos', e));
+
+    // ====== [MUERTES] ======
+    // this.getdata.getMuertesLocal().then( (data: Array<any>) => {
+    //   this.muertes = data;
+    //   this.mexMap.forEach( estado => {
+    //     this.muertes.forEach(muertes => {
+    //       if ( estado.name === muertes.estado) {
+    //         estado.fill = '#fc0606';
+    //       }
+    //     });
+    //   });
+    // }).catch( e => console.log( 'Error get MUERTEs', e));
+
+    // ====== [GRAN DATA] ======

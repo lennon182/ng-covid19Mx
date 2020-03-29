@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+    html {
+        background-color: #333333;
+    }
+    
+    body {
+        font-family: 'Baloo 2', cursive;
+        font-size: 16px;
+    }
+    
+    .container {
+        width: 95%!important;
+    }
+    
+    .fill-menu {
+        background-color: #333333!important;
+        color: white;
+    }
+    
+    .mapdiv {
+        background-color: #8e81fe !important;
+        padding: 5px!important;
+    }
+    
+    .map {
+        fill: #388e3c;
+        /* stroke: #f1d5d5; */
+        stroke: #212121;
+        stroke-width: 1;
+    }
+    /* .mapdiv path {
+    fill: #f0f0f0!important;
+} */
+    
+    .mapdiv path:hover {
+        /* fill: #EA5252!important; */
+        fill: #3f51b5;
+        transition: .6s fill;
+    }
+    
+    .mapdiv a:hover {
+        background-color: #2a13f5!important;
+    }
+    
+    .no-marpad {
+        padding: 0!important;
+        margin: 0!important;
+    }
+    
+    .tabs .tab a.active {
+        background-color: white!important;
+        color: #333333!important;
+    }
+    
+    .tabs .tab a {
+        background-color: #333333!important;
+        color: white!important;
+    }
+    
+    .modal-footer {
+        background-color: #333333!important;
+    }
+    
+    .fillMuertes {
+        fill: #fc0606;
+    }
+    
+    .fillInfectados {
+        fill: #f13d26;
+    }
+    
+    .fillSospechosos {
+        fill: #fca924;
+    }
+    
+    .blur {
+        /* filter: blur(4px); */
+        filter: blur(1.5rem);
+    }

@@ -1,0 +1,180 @@
+<div class="container">
+    <div class="row no-marpad " style="margin-top: 1rem;">
+        <div class="col m4 s12">
+            <div class="card red darken-4 valign-wrapper">
+                <div class="card-image">
+                    <img src="assets/images/cross.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.muertes" class="white-text" style="margin-left: 1rem; font-size: 1.9rem;">Muertes:
+                        <!-- {{this.muertes.length}} </span> --> {{this.muertesV2}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col m4 s12">
+            <div class="card orange darken-4 z-depth-3 valign-wrapper">
+                <div class="card-image">
+                    <img src="assets/images/infectados.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.infectados" class="white-text" style="margin-left: rem; font-size: 1.9rem;">Infectados:
+                        {{this.infectados.length}} </span>
+                </div>
+            </div>
+        </div>
+        <div class="col m4 s12">
+            <div class="card amber accent-3  z-depth-3 valign-wrapper">
+                <div class="card-image">
+                    <img src="assets/images/sospechosos.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.sospechosos" class="white-text" style="margin-left: 0rem; font-size: 1.9rem;">Sospechosos:
+                        {{this.sospechosos.length}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row no-marpad">
+        <div class="col s12 m12 no-marpad center yellow">
+            <h4>Fase 02</h4>
+        </div>
+    </div>
+
+    <div class="row no-marpad">
+        <div class="col s12 m12 no-marpad">
+            <p class="white-text">
+                <span style="font-size: 1.5rem;">Instrucciones:</span> Localiza el estado en el mapa sobre cual estes interesado obtener información, da click sobre el y a contunuación se abrirá una tabla con los detalles que corresponden a cada entidad.
+            </p>
+        </div>
+    </div>
+
+    <!-- [MAPA] -->
+    <div class="row no-marpad" id="blurContainer">
+        <div class="col s12 m12 no-marpad">
+            <div class="card">
+                <div class="card-image white-text ">
+                    <span class="card-title">{{this.fecha | date}}</span>
+                    <div class="mapdiv ">
+                        <svg version="1.2" width="100%" height="100%" viewBox="0 0 1000 630" preserveAspectRatio="xMaxYMax" class="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g *ngFor="let stados of this.mexMap ">
+                                <a [attr.xlink:title]="stados.name">
+                                    <path [attr.d]="stados.d " [attr.id]="stados.id " [attr.name]="stados.name"
+                                        [attr.fill]="stados.fill" data-target="modalx" class="btn modal-trigger"
+                                        (click)="openModal(stados.id, stados.name)" />
+                                </a>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ENDMAPA] -->
+
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modalx" class="modal modal-fixed-footer fill-menu">
+    <div class="modal-content no-marpad ">
+        <div class="row no-marpad center-align " style="color: white ">
+
+            <div class="col s12 m12 fill-menu " style="padding: 1rem; margin-bottom: 0rem; ">
+                <img src="assets/images/covid2.svg " srcset="assets/images/covid2.svg " class="responsive-img " style="max-width: 54px; margin-left: 2rem; margin-top: .2rem; ">
+                <span style="font-size: 2rem; top: -1.2rem; position:relative; margin-left: 0.5rem; ">{{this.modalData.name}}</span>
+            </div>
+
+            <div class="col s12 m4 red darken-4 z-depth-3 ">
+                <span style="font-size: 1.8rem; ">Muertes: {{this.modalData.muertes}}</span>
+            </div>
+            <div class="col s12 m4 orange darken-4 z-depth-3 ">
+                <span style="font-size: 1.8rem; ">Infectados: {{this.modalData.infectados.length}}</span>
+            </div>
+            <div class="col s12 m4 amber accent-3 z-depth-3 ">
+                <span style="font-size: 1.8rem; ">Sospechosos: {{this.modalData.sospechosos.length}}</span>
+            </div>
+        </div>
+        <div class="row no-marpad">
+            <div class="col s12 no-marpad white">
+                <div class="fill-menu center-align " style="font-size: 1.5rem; padding: 1rem 0 ">Detalle</div>
+                <ul class="tabs">
+                    <li class="tab col s4 "><a class="active" href="#muertesTab">Muertes</a></li>
+                    <li class="tab col s4 "><a href="#infectadosTab">Infectados</a></li>
+                    <li class="tab col s4 "><a href="#sospechososTab">Sospechosos</a></li>
+                </ul>
+            </div>
+            <div id="muertesTab" class="col s12" style="background-color: white!important; color: #333333!important">
+                <table class="striped responsive-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sexo</th>
+                            <th>Edad</th>
+                            <th>Padecimientos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of this.modalData.muertes; let i = index ">
+                            <td>{{i +1}}</td>
+                            <td>{{m.sexo}}</td>
+                            <td>{{m.edad}}</td>
+                            <td>{{m.padecimientos}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="infectadosTab" class="col s12" style="background-color: white!important; color: #333333!important">
+                <table class="striped responsive-table ">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sexo</th>
+                            <th>Edad</th>
+                            <th>Síntomas</th>
+                            <th>Procedencia</th>
+                            <th>Llegada a MX</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let inf of this.modalData.infectados; let i = index ">
+                            <td>{{i +1}}</td>
+                            <td>{{inf.sexo}}</td>
+                            <td>{{inf.edad}}</td>
+                            <td>{{inf.iniciSintomas}}</td>
+                            <td>{{inf.procedencia}}</td>
+                            <td>{{inf.llegadaMx}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="sospechososTab" class="col s12" style="background-color: white!important; color: #333333!important">
+                <table class="striped responsive-table ">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sexo</th>
+                            <th>Edad</th>
+                            <th>Síntomas</th>
+                            <th>Procedencia</th>
+                            <th>Llegada a MX</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let sosp of this.modalData.sospechosos; let i=index">
+                            <td>{{i + 1}}</td>
+                            <td>{{sosp.sexo}}</td>
+                            <td>{{sosp.edad}}</td>
+                            <td>{{sosp.inicioSintomas}}</td>
+                            <td>{{sosp.procedencia}}</td>
+                            <td>{{sosp.llegadaMx}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer fill-menu ">
+        <button class="red waves-effect waves-light btn " (click)="modalDestroy() ">Cerrar</button>
+    </div>
+</div>
