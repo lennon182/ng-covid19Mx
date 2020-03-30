@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { GetdataService } from 'src/app/services/getdata.service';
 
-declare var am4core;
-declare var  am4themes_animated;
-declare var covid_world_timeline;
-declare var covid_total_timeline;
-declare var am4maps;
-declare var am4geodata_worldLow;
-declare var am4charts;
-declare var max;
+
 @Component({
   selector: 'app-global-map',
   templateUrl: './global-map.component.html',
@@ -16,13 +12,82 @@ declare var max;
 })
 export class GlobalMapComponent implements OnInit {
 
-  data: any;
-  constructor( private getData: GetdataService ) { }
+  private data;
+  public lineChartData: ChartDataSets[] =  [
+    { data: [], label: 'Muertes' },
+    { data: [], label: 'Infectados'}
+  ];
+  public lineChartLabels: Label[];
 
-  ngOnInit(): void {
-    this.getData.getDataGob().then( r => {
-      console.log('=====>', r);
-    }).catch( e => console.log('ERROR=====>', e));
+  public lineChartOptions: (ChartOptions) = {
+    responsive: true,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false
+        }
+      }]
+    },
+    title: {
+      display: true,
+      text: '🇲🇽 Historial de coronoavirus en México',
+      fontSize: 24,
+      fontColor: '#33333'
+    },
+    elements: {
+      line: {
+        borderWidth: 3,
+        fill: false
+      },
+      point: {
+        radius: 3,
+        borderWidth: 2,
+        backgroundColor: 'white',
+        hoverRadius: 7,
+        hoverBorderWidth: 2
+      }
+    },
+    tooltips: {
+      backgroundColor: '#5c6bc0',
+      titleFontSize: 18,
+      // mode: 'x'
+    },
+    layout: {
+      padding: {
+        bottom: 16,
+        top: 16
+      }
+    },
+    legend: {
+      labels: {
+      }
+    }
+  };
+  public lineChartColors: Color[] = [
+    {borderColor: '#b71c1c'},
+    { borderColor: '#e65100'},
+    {borderColor: '#ffc400'}
+  ];
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
+  constructor( private getData: GetdataService) { }
+
+  async ngOnInit() {
+    this.data  = await this.getData.getDataChart();
+    const labelX =  this.data.map(item => item.Fecha);
+    const labelXX = labelX.map(item =>
+      new Intl.DateTimeFormat('es-MX', { month: 'long', day: 'numeric', timeZone: 'Australia/Sydney' }).format(new Date(item))
+    );
+    const muertesChart = this.data.map(item => item.Deceased);
+    const sospechososChart = this.data.map(item => item.Susp );
+    const infectadosChart = this.data.map( item => item.Pos);
+    this.lineChartLabels = labelXX;
+    this.lineChartData = [
+    { data: muertesChart, label: 'Muertes'},
+    { data: infectadosChart, label: 'Infectados' },
+  ];
   }
 
 }

@@ -15,13 +15,18 @@ firebase.initializeApp(environment.firebaseConfig);
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './components/footer/footer.component';
 import { GlobalMapComponent } from './pages/global-map/global-map.component';
+import { ChartsModule } from 'ng2-charts';
+import { FuentesOficialesComponent } from './components/fuentes-oficiales/fuentes-oficiales.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FooterComponent,
-    GlobalMapComponent
+    GlobalMapComponent,
+    FuentesOficialesComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,8 @@ import { GlobalMapComponent } from './pages/global-map/global-map.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

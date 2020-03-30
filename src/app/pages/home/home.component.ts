@@ -25,27 +25,17 @@ export class HomeComponent implements OnInit {
     @ViewChild('tooltip') tooltip: ElementRef;
 
 
-  mexico;
   mexMap;
   sospechosos;
   infectados;
   muertes;
   muertesV2;
-  flagMuertes: boolean;
-  flagInfectados: boolean;
-  flagSospechosos: boolean;
   covidApi: string;
   fecha;
   // modalData: { id: string, muertes: Array<any>, infectados: Array<any>, sospechosos: Array<any>, name: string};
   modalData: { id: string, muertes: number, infectados: Array<any>, sospechosos: Array<any>, name: string};
   swipeData: { id: string, muertes: Array<any>, infectados: Array<any>, sospechosos: Array<any>, name: string};
   mapData: { id: string, muertes: Array<any>, infectados: Array<any>, sospechosos: Array<any>, name: string};
-
-  estados = [
-    { name: 'VERACRUZ'},
-    { name: 'OAXACA'},
-    { name: 'CHIAPAS'}
-  ];
 
   constructor(
       private title: Title, private meta: Meta,
@@ -54,6 +44,7 @@ export class HomeComponent implements OnInit {
 
 
   async ngOnInit() {
+    window.scrollTo(0, 0);
     this.title.setTitle(this.data.title);
     this.meta.addTags([
       { name: 'twitter:card', content: 'summary' },
@@ -65,6 +56,8 @@ export class HomeComponent implements OnInit {
     this.covidApi = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations';
     this.mexMap = [];
     this.fecha = new Date();
+    this.fecha =
+      new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric', year: 'numeric', timeZone: 'Australia/Sydney'}).format(this.fecha);
     this.sospechosos = [];
     this.infectados = [];
     this.muertes = [];
@@ -72,9 +65,6 @@ export class HomeComponent implements OnInit {
     this.modalData = { id: '', name: '', muertes: 0, infectados: [], sospechosos: []};
     this.swipeData = { id: '', name: '', muertes: [], infectados: [], sospechosos: []};
     this.mapData = { id: '', name: '', muertes: [], infectados: [], sospechosos: []};
-    this.flagMuertes = false;
-    this.flagInfectados = false;
-    this.flagSospechosos = false;
 
     $(document).ready(() =>  {
        $('.modal').modal({
@@ -95,10 +85,13 @@ export class HomeComponent implements OnInit {
   // ====== [GetMapa] ======
   async getMapa() {
     try {
+      // GetaData
       this.mexMap = await this.getdata.getMapaMx();
+
       const m = [];
       const i = [];
       const s = [];
+
       this.mexMap.forEach(e => {
         // *************
         this.sospechosos.forEach( sospechosos => {
@@ -208,7 +201,7 @@ export class HomeComponent implements OnInit {
 
     this.muertes.forEach( (e) => {
       if (e.Estado === estado) {
-        console.log('MUERTES =>', e.Estado);
+        // console.log('MUERTES =>', e.Estado);
         this.modalData.muertes = e.Fallecidos;
       }
     });
@@ -228,8 +221,6 @@ export class HomeComponent implements OnInit {
 
   selectState( estado ) {
     console.log('Selected => ', estado);
-    // this.swipeData.name = estado;
-
     this.swipeData.muertes = [];
     this.swipeData.infectados = [];
     this.swipeData.sospechosos = [];
@@ -243,9 +234,7 @@ export class HomeComponent implements OnInit {
     blur.removeAttribute('class');
     $('.tabs').tabs('select', 'muertesTab');
     $('.modal').modal('close');
-    // this.modalInstance.close();
   }
 
-  // ===== [ CHARTS] =====
 
 }

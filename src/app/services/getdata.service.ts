@@ -7,28 +7,26 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class GetdataService {
-
   sospechosos;
   infectados;
   muertes;
+  datachart;
   mapamx;
   uriGitApi;
 
-  version = 'v1.0.8';
-  versionDescription: 'Usamos nueva API - 03-24-2020';
+  version = 'v1.0.9';
+  versionDescription: 'Cambio en el diseño, se agrego el chart e iconos mobile';
   linkNewAPI: 'https://github.com/carranco-sga/Mexico-COVID-19?files=1';
   linknewGlobalAPI: 'https://github.com/DataScienceResearchPeru/covid-19_latinoamerica/blob/master/README.md';
+  apiSinave: 'http://ncov.sinave.gob.mx/Mapa45.aspx/Grafica23';
 
-  constructor(
-    private http: HttpClient,
-    private db: AngularFirestore,
-    ) {
-
-      // ====== [INPROD] ======
+  constructor(private http: HttpClient, private db: AngularFirestore) {
+    // ====== [INPROD] ======
     this.uriGitApi = 'https://lennon182.github.io/assets/data';
     this.sospechosos = `${this.uriGitApi}/sospechosos.json`;
     this.infectados = `${this.uriGitApi}/infectados.json`;
     this.muertes = `${this.uriGitApi}/muertes.json`;
+    this.datachart = 'assets/data/chart.json';
     // ====== [INDEV] ======
     // this.sospechosos = `assets/data/sospechosos.json`;
     // this.infectados = `assets/data/infectados.json`;
@@ -36,9 +34,9 @@ export class GetdataService {
 
     // MAPA
     this.mapamx = `assets/data/mapamx.json`;
-   }
+  }
 
-   // ====== [ FIREBASE ] ======
+  // ====== [ FIREBASE ] ======
   //  getSospechosos() {
   //    return new Promise((resolve, reject) => {
   //      try {
@@ -78,7 +76,7 @@ export class GetdataService {
   getMapaMx() {
     return new Promise((resolve, reject) => {
       try {
-        this.http.get<any>(this.mapamx).subscribe( (datamapamx: Array<any>) => {
+        this.http.get<any>(this.mapamx).subscribe((datamapamx: Array<any>) => {
           return resolve(datamapamx);
         });
       } catch (e) {
@@ -88,56 +86,75 @@ export class GetdataService {
   }
 
   // ====== [HTTP - Sospechosos] ======
-   getSospechososLocal() {
-     return new Promise( (resolve, reject) => {
-       try {
-         this.http.get<Array<any>>(this.sospechosos).subscribe( data => {
-           return resolve(data);
-         });
-       } catch (e) {
-         return reject(e);
-       }
-     });
-   }
+  getSospechososLocal() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.http.get<Array<any>>(this.sospechosos).subscribe(data => {
+          return resolve(data);
+        });
+      } catch (e) {
+        return reject(e);
+      }
+    });
+  }
 
-   // ====== [HTTP - Infectados] ======
-   getInfectadosLocal() {
-     return new Promise((resolve, reject) => {
-       try {
-         this.http.get<Array<any>>(this.infectados).subscribe( data => {
+  // ====== [HTTP - Infectados] ======
+  getInfectadosLocal() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.http.get<Array<any>>(this.infectados).subscribe(data => {
           //  console.log('INFECTADOS', data);
-           return resolve(data);
-         });
-       } catch (e) {
-         return reject(e);
-       }
-     });
-   }
+          return resolve(data);
+        });
+      } catch (e) {
+        return reject(e);
+      }
+    });
+  }
 
-   // ====== [HTTP - Muertes] ======
-   getMuertesLocal() {
-     return new Promise((resolve, reject) => {
-       try {
-         this.http.get(this.muertes).subscribe( data => {
-           return resolve(data);
-         });
-       } catch (e) {
-         return reject( console.log(e));
-       }
-     } );
-   }
+  // ====== [HTTP - Muertes] ======
+  getMuertesLocal() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.http.get(this.muertes).subscribe(data => {
+          return resolve(data);
+        });
+      } catch (e) {
+        return reject(console.log(e));
+      }
+    });
+  }
+
+  // ====== [HTTP - CHARTS] ======
+  getDataChart() {
+    return new Promise((resolve, reject) => {
+      try {
+        this.http.get(this.datachart).subscribe( data => {
+          return resolve (data);
+        });
+      } catch (error) {
+        return reject(console.log(error));
+      }
+    });
+  }
 
   //  GetDATA GOB
   getDataGob() {
     return new Promise((resolve, reject) => {
       try {
-        this.http.post('http://ncov.sinave.gob.mx/Mapa45.aspx/Grafica23', {
-          'Content-Type': 'application/json'
-        }, {}).subscribe( r => {
-                  return resolve(r);
-                });
+        this.http
+          .post(
+            'http://ncov.sinave.gob.mx/Mapa45.aspx/Grafica23',
+            {
+              'Content-Type': 'application/json'
+            },
+            {}
+          )
+          .subscribe(r => {
+            return resolve(r);
+          });
       } catch (e) {
-        return reject( console.log(e));
+        return reject(console.log(e));
       }
     });
   }
