@@ -6,7 +6,7 @@ App was realized it on Angular 9. This project show stats about Covid19 in Méxi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
-## For run this project
+## To run this project
 
 Add your own Firebase Credentials in the enviroments files.
 
