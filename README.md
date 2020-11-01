@@ -1,8 +1,14 @@
 # NgCovid19Mx
 
+[Covid19Mx](https://covid19mx.ml/) Last Update: April 18 2020
+
 App was realized it on Angular 9. This project show stats about Covid19 in México Country, it is hosted on Firebase Hosting, it use data Http from Json files, this data is show in a map made in Leaflet, use Chart.js Library for the stats, MaterializeCss for Styles. Last Update: April 2018.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+
+## For run this project
+
+Add your own Firebase Credentials in the enviroments files.
 
 ## Development server
 
