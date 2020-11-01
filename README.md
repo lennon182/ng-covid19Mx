@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## To run this project
 
-Add your own Firebase Credentials in the enviroments files.
+Add your own Firebase Credentials in the environments files.
 
 ## Development server
 
