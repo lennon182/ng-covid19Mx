@@ -1,4 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+#ENVIROMENTS
+/src/environments/
+
 # compiled output
 /dist
 /tmp
@@ -39,7 +42,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/src/environments/**
 
 # System Files
 .DS_Store
