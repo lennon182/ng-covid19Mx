@@ -1,5 +1,7 @@
 # NgCovid19
 
+App was realized it on Angular 9. This project show stats about Covid19 in México Country, it use data Http from Json files, this data is show in a map made in Leafleat, use a Chart Library for the stats.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
 ## Development server
