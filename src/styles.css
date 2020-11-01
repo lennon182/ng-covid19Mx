@@ -1,79 +1,136 @@
-    html {
-        background-color: #333333;
-        scroll-behavior: smooth;
-    }
-    
-    body {
-        font-family: 'Baloo 2', cursive !important;
-        font-size: 16px;
-    }
-    
-    .container {
-        width: 95%!important;
-    }
-    
-    .fill-menu {
-        background-color: #333333!important;
-        color: white;
-    }
-    
-    .mapdiv {
-        background-color: #8e81fe !important;
-        padding: 5px!important;
-    }
-    
-    .map {
-        fill: #388e3c;
-        /* stroke: #f1d5d5; */
-        stroke: #212121;
-        stroke-width: 1;
-    }
-    /* .mapdiv path {
+@import "~leaflet/dist/leaflet.css";
+html {
+    background-color: #333333;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Baloo 2', cursive !important;
+    font-size: 16px;
+}
+
+.radius {
+    border-radius: 5px!important;
+}
+
+.container {
+    width: 95%!important;
+}
+
+.fill-menu {
+    background-color: #333333!important;
+    color: white;
+}
+
+.mapdiv {
+    background-color: #8e81fe !important;
+    padding: 5px!important;
+}
+
+.map {
+    fill: #388e3c;
+    /* stroke: #f1d5d5; */
+    stroke: #212121;
+    stroke-width: 1;
+}
+
+
+/* .mapdiv path {
     fill: #f0f0f0!important;
 } */
-    
-    .mapdiv path:hover {
-        /* fill: #EA5252!important; */
-        fill: #3f51b5;
-        transition: .6s fill;
-    }
-    
-    .mapdiv a:hover {
-        background-color: #2a13f5!important;
-    }
-    
-    .no-marpad {
-        padding: 0!important;
-        margin: 0!important;
-    }
-    
-    .tabs .tab a.active {
-        background-color: white!important;
-        color: #333333!important;
-    }
-    
-    .tabs .tab a {
-        background-color: #333333!important;
-        color: white!important;
-    }
-    
-    .modal-footer {
-        background-color: #333333!important;
-    }
-    
-    .fillMuertes {
-        fill: #fc0606;
-    }
-    
-    .fillInfectados {
-        fill: #f13d26;
-    }
-    
-    .fillSospechosos {
-        fill: #fca924;
-    }
-    
-    .blur {
-        /* filter: blur(4px); */
-        filter: blur(1.5rem);
-    }
+
+.mapdiv path:hover {
+    /* fill: #EA5252!important; */
+    fill: #3f51b5;
+    transition: .6s fill;
+}
+
+.mapdiv a:hover {
+    background-color: #2a13f5!important;
+}
+
+.no-marpad {
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.tabs .tab a.active {
+    background-color: white!important;
+    color: #333333!important;
+}
+
+.tabs .tab a {
+    background-color: #333333!important;
+    color: white!important;
+}
+
+.modal-footer {
+    background-color: #333333!important;
+}
+
+.fillMuertes {
+    fill: #fc0606;
+}
+
+.fillInfectados {
+    fill: #f13d26;
+}
+
+.fillSospechosos {
+    fill: #fca924;
+}
+
+.blur {
+    /* filter: blur(4px); */
+    filter: blur(1.5rem);
+}
+
+
+/* Leaflet */
+
+.leaflet-popup-content-wrapper {
+    background: #333333!important;
+    color: white;
+}
+
+#map {
+    height: 80vh;
+}
+
+.leaflet-popup-content {
+    width: 300px!important;
+}
+
+
+/* CUSTOM MAP LAYER INFO */
+
+.info {
+    /* margin: 1rem; */
+    /* padding: 1rem; */
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: #f0f0f0;
+    color: #333333;
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-bottom: 1rem;
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.info-legend {
+    color: #f0f0f0;
+    padding: 0.2rem!important;
+    font-size: 0.8rem;
+    text-align: right!important;
+    opacity: 1!important;
+}
+
+.info-legend-title {
+    font-weight: bold;
+    text-align: right;
+    padding: 0.2rem!important;
+}

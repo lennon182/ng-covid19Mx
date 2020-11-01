@@ -30,7 +30,7 @@ export class GlobalMapComponent implements OnInit {
     },
     title: {
       display: true,
-      text: '🇲🇽 Historial de coronoavirus en México',
+      text: '🇲🇽 Curva epidemiológica',
       fontSize: 24,
       fontColor: '#33333'
     },
@@ -80,9 +80,9 @@ export class GlobalMapComponent implements OnInit {
     const labelXX = labelX.map(item =>
       new Intl.DateTimeFormat('es-MX', { month: 'long', day: 'numeric', timeZone: 'Australia/Sydney' }).format(new Date(item))
     );
-    const muertesChart = this.data.map(item => item.Deceased);
-    const sospechososChart = this.data.map(item => item.Susp );
-    const infectadosChart = this.data.map( item => item.Pos);
+    const muertesChart = this.data.map(item => item.muertes);
+    const sospechososChart = this.data.map(item => item.sospechosos );
+    const infectadosChart = this.data.map( item => item.infectados);
     this.lineChartLabels = labelXX;
     this.lineChartData = [
     { data: muertesChart, label: 'Muertes'},

@@ -12,9 +12,11 @@ export class GetdataService {
   muertes;
   datachart;
   mapamx;
+  mapajson;
   uriGitApi;
+  lastUpdate;
 
-  version = 'v1.0.9';
+  version = 'v1.1.0';
   versionDescription: 'Cambio en el diseño, se agrego el chart e iconos mobile';
   linkNewAPI: 'https://github.com/carranco-sga/Mexico-COVID-19?files=1';
   linknewGlobalAPI: 'https://github.com/DataScienceResearchPeru/covid-19_latinoamerica/blob/master/README.md';
@@ -26,14 +28,17 @@ export class GetdataService {
     this.sospechosos = `${this.uriGitApi}/sospechosos.json`;
     this.infectados = `${this.uriGitApi}/infectados.json`;
     this.muertes = `${this.uriGitApi}/muertes.json`;
-    this.datachart = 'assets/data/chart.json';
+    this.datachart = `${this.uriGitApi}/chart.json`;
     // ====== [INDEV] ======
     // this.sospechosos = `assets/data/sospechosos.json`;
+    // this.datachart = 'assets/data/chart.json';
     // this.infectados = `assets/data/infectados.json`;
     // this.muertes = `assets/data/muertes.json`;
 
-    // MAPA
+    // MAPA SVG
     this.mapamx = `assets/data/mapamx.json`;
+
+    // this.mapajson = `assets/data/mapamxl.json`;
   }
 
   // ====== [ FIREBASE ] ======
@@ -85,6 +90,18 @@ export class GetdataService {
     });
   }
 
+  getMapaJson() {
+    return new Promise( (resolve, reject) => {
+      try {
+        this.http.get(this.mapajson).subscribe( d => {
+          return resolve(d);
+        });
+      } catch (error) {
+        return reject(console.log(error));
+      }
+    });
+  }
+
   // ====== [HTTP - Sospechosos] ======
   getSospechososLocal() {
     return new Promise((resolve, reject) => {
@@ -102,7 +119,7 @@ export class GetdataService {
   getInfectadosLocal() {
     return new Promise((resolve, reject) => {
       try {
-        this.http.get<Array<any>>(this.infectados).subscribe(data => {
+        this.http.get<any[]>(this.infectados).subscribe(data => {
           //  console.log('INFECTADOS', data);
           return resolve(data);
         });
@@ -116,7 +133,7 @@ export class GetdataService {
   getMuertesLocal() {
     return new Promise((resolve, reject) => {
       try {
-        this.http.get(this.muertes).subscribe(data => {
+        this.http.get(this.muertes).subscribe((data: any) => {
           return resolve(data);
         });
       } catch (e) {
@@ -129,7 +146,7 @@ export class GetdataService {
   getDataChart() {
     return new Promise((resolve, reject) => {
       try {
-        this.http.get(this.datachart).subscribe( data => {
+        this.http.get(this.datachart).subscribe( (data: any) => {
           return resolve (data);
         });
       } catch (error) {

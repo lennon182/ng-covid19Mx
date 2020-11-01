@@ -18,6 +18,11 @@ import { GlobalMapComponent } from './pages/global-map/global-map.component';
 import { ChartsModule } from 'ng2-charts';
 import { FuentesOficialesComponent } from './components/fuentes-oficiales/fuentes-oficiales.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { LeafletMapComponent } from './pages/leaflet-map/leaflet-map.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MapComponent } from './components/map/map.component';
+import { NavComponent } from './components/nav/nav.component';
+import { DashHeaderComponent } from './components/dash-header/dash-header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { ModalComponent } from './components/modal/modal.component';
     FooterComponent,
     GlobalMapComponent,
     FuentesOficialesComponent,
-    ModalComponent
+    ModalComponent,
+    LeafletMapComponent,
+    DashboardComponent,
+    MapComponent,
+    NavComponent,
+    DashHeaderComponent
   ],
   imports: [
     BrowserModule,

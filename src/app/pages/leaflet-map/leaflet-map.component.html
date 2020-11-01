@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row no-marpad " style="margin-top: 1rem;">
+        <div class="col m4 s12">
+            <div class="card red darken-4 valign-wrapper radius">
+                <div class="card-image">
+                    <img src="assets/images/cross.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.muertes" class="white-text" style="margin-left: 1rem; font-size: 1.9rem;">Muertes:
+                            <!-- {{this.muertes.length}} </span> --> {{this.muertesV2}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col m4 s12">
+            <div class="card orange darken-4 z-depth-3 valign-wrapper radius">
+                <div class="card-image">
+                    <img src="assets/images/infectados.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.infectados" class="white-text" style="margin-left: rem; font-size: 1.9rem;">Infectados:
+                            {{this.infectados.length}} </span>
+                </div>
+            </div>
+        </div>
+        <div class="col m4 s12">
+            <div class="card amber accent-3  z-depth-3 valign-wrapper radius">
+                <div class="card-image">
+                    <img src="assets/images/sospechosos.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px">
+                </div>
+                <div class="card-content center-align">
+                    <span *ngIf="this.sospechosos" class="white-text" style="margin-left: 0rem; font-size: 1.9rem;">Sospechosos:
+                            {{this.sospechosos.length}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row no-marpad">
+        <div class="col s12 m12 no-marpad">
+            <div class="card fill-menu valign-wrapper radius">
+                <div class="card-image" style="font-size: 1.9rem; color: #333333">
+                    <!-- <img src="assets/images/stayhome.svg" class="responsive-img" style="margin-left: 1rem; max-width:64px"> -->
+                </div>
+                <div class="card-content yellow-text left-align" style="margin: 0 auto;font-size: 1.9rem;">
+                    Fase 02 - #QuédateEnCasa
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="row no-marpad">
+        <div class="col s12 m12 no-marpad">
+            <p class="white-text">
+                <span style="font-size: 1.5rem;">💢 Instrucciones:</span> Click en el estado para más información. Puedes hacer zoom para mejor consulta.
+            </p>
+        </div>
+    </div>
+    <!-- MAPA -->
+    <div class="row no-marpad blurContainer">
+        <div class="col s12 m12 no-marpad">
+            <div class="card">
+                <div class="card-content no-marpad">
+                    <div id="map">
+                        <div class="center-align" style="padding: 10%; font-size: 2rem;">
+                            <img src="assets/images/map01.gif" class="responsive-img" style="width: 160px;">
+                            <br> Cargando mapa...
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action fill-menu">
+                    <small>Última actualización {{this.lastDate}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ENDMAPA -->
+    <!-- [CHART] -->
+    <div class="row">
+        <div class="col s12 m6">
+            <app-global-map></app-global-map>
+        </div>
+        <div class="col s12 m6">
+            <app-fuentes-oficiales></app-fuentes-oficiales>
+        </div>
+    </div>
+    <!-- [ENDCHART] -->
+    <div class="divider"></div>
+</div>

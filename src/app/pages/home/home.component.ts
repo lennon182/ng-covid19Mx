@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
       private title: Title, private meta: Meta,
-      private renderer: Renderer2,
       private getdata: GetdataService) { }
 
 
@@ -57,7 +56,8 @@ export class HomeComponent implements OnInit {
     this.mexMap = [];
     this.fecha = new Date();
     this.fecha =
-      new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric', year: 'numeric', timeZone: 'Australia/Sydney'}).format(this.fecha);
+      // tslint:disable-next-line:max-line-length
+      new Intl.DateTimeFormat('es-MX', {month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Mexico_city'}).format(this.fecha);
     this.sospechosos = [];
     this.infectados = [];
     this.muertes = [];
