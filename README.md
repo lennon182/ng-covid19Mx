@@ -1,6 +1,6 @@
 # NgCovid19Mx
 
-[Covid19Mx](covid19mx-1bf27.web.app) Last Update: April 18 2020.
+[Covid19Mx](https://covid19mx-1bf27.web.app/) Last Update: April 2023.
 
 ![GitHub Logo](https://github.com/lennon182/lennon182.github.io/blob/master/assets/images/coverCovid19.jpg)
 
